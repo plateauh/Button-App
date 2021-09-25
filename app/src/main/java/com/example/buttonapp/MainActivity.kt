@@ -1,5 +1,6 @@
 package com.example.buttonapp
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -20,15 +21,31 @@ class MainActivity : AppCompatActivity() {
         plus = findViewById(R.id.plusBtn)
 
         minus.setOnClickListener {
-            var currentNum = number.text.toString().toInt()
-            currentNum--
-            number.text = currentNum.toString()
+            updateNumber("-")
         }
 
         plus.setOnClickListener {
-            var currentNum = number.text.toString().toInt()
-            currentNum++
-            number.text = currentNum.toString()
+            updateNumber("+")
+        }
+
+    }
+
+    fun updateNumber (operation: String) {
+
+        var currentNum = number.text.toString().toInt()
+
+        when (operation){
+            "-" -> currentNum--
+            "+" -> currentNum++
+        }
+
+        number.text = currentNum.toString()
+
+        when {
+            currentNum > 0 -> number.setTextColor(Color.GREEN)
+            currentNum < 0 -> number.setTextColor(Color.RED)
+            currentNum == 0 -> number.setTextColor(Color.BLACK)
+
         }
 
     }
