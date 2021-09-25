@@ -34,9 +34,16 @@ class MainActivity : AppCompatActivity() {
 
         var currentNum = number.text.toString().toInt()
 
+        // got the moving operation from Nha T. Tran in Stackoverflow. URL: https://stackoverflow.com/a/46859822.
         when (operation){
-            "-" -> currentNum--
-            "+" -> currentNum++
+            "-" -> {
+                currentNum--
+                number.y += 10
+            }
+            "+" -> {
+                currentNum++
+                number.y -= 10
+            }
         }
 
         number.text = currentNum.toString()
@@ -45,7 +52,6 @@ class MainActivity : AppCompatActivity() {
             currentNum > 0 -> number.setTextColor(Color.GREEN)
             currentNum < 0 -> number.setTextColor(Color.RED)
             currentNum == 0 -> number.setTextColor(Color.BLACK)
-
         }
 
     }
